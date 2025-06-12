@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct XAppApp: App {
-    var body: some Scene {
-        WindowGroup {
-          Splash()
-        }
+  var body: some Scene {
+    WindowGroup {
+      Launch()
     }
+  }
 }
