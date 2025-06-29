@@ -8,44 +8,37 @@
 import SwiftUI
 
 struct Tabbar: View {
-  @State var selectedTab: Tab = .home
+  @Binding var selectedTab: Tab
   @State var color: Color = .red
-  @State private var safeAreaBottom: CGFloat = 0
   @State private var tabItemWidth: CGFloat = 0
 
   var body: some View {
-    ZStack(alignment: .bottom) {
-      Group {
-        switch selectedTab {
-        case .home: Home()
-        case .components: Component()
-        case .router: Router()
-        case .personal: Personal()
-        }
-      }
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
+    GeometryReader { proxy in
+      let hasHomeIndicator = proxy.safeAreaInsets.bottom > 20
       HStack(spacing: 0) {
         buttons
       }
       .padding(.horizontal, 8)
       .padding(.top, 14)
-      .padding(.bottom, safeAreaBottom > 0 ? 22 : 14)
+      .frame(height: hasHomeIndicator ? 88 : 62, alignment: .top)
       .background(
         .ultraThinMaterial,
-        in: RoundedRectangle(cornerRadius: 24, style: .continuous)
-      )
-      .overlay(
-        overlay,
-        alignment: .topLeading
+        in: RoundedRectangle(
+          cornerRadius: hasHomeIndicator ? 34 : 0, style: .continuous
+        )
       )
       .background(
         background,
-        alignment: .topLeading
+        alignment: .leading
       )
-      .frame(maxHeight: .infinity, alignment: .bottom)
+      .overlay(
+        overlay,
+        alignment: .leading
+      )
+      .strokeStyle(cornerRadius: hasHomeIndicator ? 34 : 0)
+      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
       .ignoresSafeArea()
     }
-    .getSafeAreaInsets($safeAreaBottom)
   }
 
   var buttons: some View {
@@ -112,5 +105,5 @@ struct Tabbar: View {
 }
 
 #Preview {
-  Tabbar()
+  Tabbar(selectedTab: .constant(.home))
 }

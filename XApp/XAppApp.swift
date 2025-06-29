@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct XAppApp: App {
+  @StateObject var appModel = Model()
   var body: some Scene {
     WindowGroup {
       Launch()
+        .environmentObject(appModel)
     }
   }
 }

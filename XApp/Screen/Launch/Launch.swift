@@ -10,6 +10,7 @@ import SwiftUI
 struct Launch: View {
   @AppStorage("isFirstLaunch") private var isFirstLaunch: Bool = true
   @State private var isActiveAdv: Bool = true
+  @EnvironmentObject var model: Model
 
   var body: some View {
     if isFirstLaunch {
@@ -17,8 +18,8 @@ struct Launch: View {
         isActiveAdv = false
       }
     } else {
-      ZStack(alignment: .bottom) {
-        Tabbar()
+      ZStack {
+        TabContainer()
         if isActiveAdv {
           Advertising()
             .onAppear {
@@ -38,5 +39,5 @@ struct Launch: View {
 }
 
 #Preview {
-  Launch()
+  Launch().environmentObject(Model())
 }

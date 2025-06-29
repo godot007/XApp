@@ -9,16 +9,39 @@ import SwiftUI
 
 struct Agreement: View {
   @AppStorage("isFirstLaunch") private var isFirstLaunch: Bool = true
-  @State var next: Bool = false
   var body: some View {
-    Text("Agreement")
-    Button("welcome") {
-      next = true
-      isFirstLaunch = false
-    }
-    .fullScreenCover(isPresented: $next) {
-      // todo APP操作引导页（可以在这触发权限请求、初始化sdk），进入首页
-      Tabbar()
+    VStack {
+      Text("Agreement").font(.system(size: 24).bold())
+      ScrollView {
+        Text(
+          "这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本这是协议文本"
+        )
+        .font(.system(size: 16))
+        .foregroundStyle(Color.secondary)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .multilineTextAlignment(.leading)
+        .padding(.horizontal, 16)
+      }
+      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+      HStack {
+        Button {} label: {
+          Text("拒绝")
+            .font(.system(size: 20))
+            .foregroundStyle(Color.white)
+            .frame(maxWidth: .infinity, maxHeight: 44)
+            .background(Color.gray, in: RoundedRectangle(cornerRadius: 10))
+        }
+        Button {
+          isFirstLaunch = false
+        } label: {
+          Text("同意")
+            .font(.system(size: 20))
+            .foregroundStyle(Color.white)
+            .frame(maxWidth: .infinity, maxHeight: 44)
+            .background(Color.blue, in: RoundedRectangle(cornerRadius: 10))
+        }
+      }
+      .padding(.horizontal, 20)
     }
   }
 }
